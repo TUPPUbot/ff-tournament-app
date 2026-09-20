@@ -12,10 +12,18 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Create debug keystore
+        run: |
+          mkdir -p app
+          keytool -genkey -v -keystore app/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Debug, OU=Debug, O=Debug, L=Debug, S=Debug, C=US" -noprompt
+          mkdir -p app/ff-tournament-app || true
+          cp app/debug.keystore app/ff-tournament-app/debug.keystore || true
+          mkdir -p ff-tournament-app || true
+          cp app/debug.keystore ff-tournament-app/debug.keystore || true
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
       - name: Build Debug APK
-        run: gradle assembleDebug
+        run: gradle assembleDebug --no-daemon
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
