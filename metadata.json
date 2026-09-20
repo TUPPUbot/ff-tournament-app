@@ -1,0 +1,6 @@
+{
+  "name": "FF Tournament",
+  "description": "Mobile-first Free Fire esports tournament management platform featuring tournaments, match rooms, leaderboards, player profiles, and admin dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
